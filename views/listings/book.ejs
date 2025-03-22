@@ -1,0 +1,83 @@
+<% layout("/layouts/boilerPlate") %>
+
+<body>
+    <div class="row mt-3">
+        <div class="col-8 offset-3">
+            <b><%= listing.title %></b>
+    </div>
+    </div>
+</br>
+    
+    <!-- <div class="card col-6 offset-3 show-card listing-card">
+        <img src="<%= listing.image.url%>" 
+        class="card-img-top show-img" 
+        alt="listing_image"
+        />
+
+        <div class="card-body">
+            <p class="card-text">Owned By <i><%= listing.owner.username%></i></p>
+            <p class="card-text"><%=listing.description %></p>
+            <p class="card-text">&#8377;<%= listing.price.toLocaleString("en-IN") %> / night</p>
+            <p class="card-text"><%=listing.location %></p>
+            <p class="card-text"><%=listing.country %></p>
+        </div>
+    </div>
+
+    <br/>
+</div> -->
+
+<div class="card col-6 offset-3 show-card listing-card" style="max-width: 400px ;
+background: white;
+box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* X-offset, Y-offset, Blur, Color */">
+<div class="card" >
+   
+    <!-- <img src="<%= listing.image.url%>" class="card-img-top" alt="listing_image"> -->
+    <div class="card-body" style="padding: 25px !important;">
+        <form method="post" action="#">
+
+    </br>
+        <h5 class="card-title"><b>&#8377;<%= listing.price.toLocaleString("en-IN") %></b>/night</h5>
+        
+      <div class="date">
+        <div class="form-floating date-inpt">
+            <input type="date" class="form-control details" id="floatingInput" placeholder="name@example.com" >
+            <label for="floatingInput">Check-in</label>
+          </div>
+          <div class="form-floating date-inpt">
+            <input type="date" class="form-control details" id="floatingInput" placeholder="name@example.com" >
+            <label for="floatingInput">Check-out</label>
+          </div>
+          <div class="form-floating guest-no">
+            <input type="number" class="form-control details" id="floatingInput">
+            <label for="floatingInput">Guests</label>
+          </div>
+      </div>
+        <div class="reserve-btn mt-3"><button class="btn btn-dark edit-btn">Reserve</button></div>       
+    </form>
+    </div>
+    <div class="price">
+        <div class="total-price">
+            <div class="first-section"><a>&#8377;<%= listing.price.toLocaleString("en-IN") %> X 5 nights</a></div>
+            <div class="second-section"><p>&#8377;85,000</p></div>
+        </div>
+
+        <div class="cleaning-fee">
+            <div class="first-section"><a>Cleaning fees</a></div>
+            <div class="second-section"><p>&#8377;85,000</p></div>
+        </div>
+
+        <div class="service-fee">
+            <div class="first-section"><a>Service fees</a></div>
+            <div class="second-section"><p>&#8377;85,000</p></div>
+        </div>
+
+    <hr>
+
+        <div class="before-tax">
+            <div class="first-section"><b><a>Total before taxes</a></b></div>
+            <div class="second-section"><b><p>&#8377;85,000</p></b></div>
+        </div>
+    </div>
+  </div>
+  </div>
+</body>

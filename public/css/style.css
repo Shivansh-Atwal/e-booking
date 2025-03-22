@@ -1,0 +1,244 @@
+body{
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container{
+    flex: 1;
+}
+
+.navbar {
+    height: 5rem;
+    background-color: white;
+}
+
+.fa-compass{
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+.nav-link{
+    color:#222222 !important;
+}
+
+.f-info-socials i {
+    margin-right: 1rem; 
+    font-size: 1.2rem; 
+}
+
+.f-info-links a{
+    text-decoration: none;
+    color:#222222;
+
+}
+
+.f-info-links a hover{
+    text-decoration: underline;
+}
+.f-info-links,.f-info-socials,.f-info-brand{
+    display:flex;
+    align-items:center;
+    width:100%;
+    justify-content: center;
+}
+
+.f-info{
+    text-align: center;
+    display: flex;
+    height: 8rem;
+    background-color:#ebebeb ;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items:space-evenly;
+}
+
+/* cards */
+
+.listing-card {
+    border:none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top{
+    border-radius: 1rem !important;
+    width:100% !important;
+    object-fit: cover !important;
+}
+
+.card-body{
+    padding: 0 !important;
+}
+
+.card-text{
+    font-weight:400 !important;
+}
+
+.listing-link{
+    text-decoration: none;
+}
+
+.date-inpt{
+    width:50%;
+}
+
+.date-inpt:hover{
+    border: 2px solid black;
+    border-radius:10px; 
+}
+
+.guest-no{
+    width:100%;
+}
+
+.guest-no:hover{
+    border: 2px solid black;
+    border-radius:10px;   
+}
+.date{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border:solid 2.5px black;
+    border-radius:10px;
+   
+}
+
+.price{
+    display: flex;
+    flex-direction: column;
+}
+
+.date:hover{
+    cursor: pointer;
+}
+
+.details{
+    border:none;
+}
+
+.reserve-btn{
+    width: 100%;
+}
+
+.total-price{
+    font-size: 1.1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+}
+
+.cleaning-fee{
+    font-size: 1.1rem;
+    padding: 10px 0 0 0 ;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;  
+}
+
+.service-fee{
+    font-size: 1.1rem;
+    padding: 10px 0 0 0 ;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+}
+
+.before-tax{
+    font-size: 1.1rem;
+    margin:15px 0 0 0;
+    padding: 15px 0 0 0 ;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;  
+}
+/* card effect */
+
+.card-img-overlay{
+    opacity: 0;
+}
+
+.card-img-overlay:hover{
+    opacity:0.2;
+    background-color: whitesmoke;
+}
+
+.add-btn {
+    background-color:#fe424d !important;
+    border: none !important;
+}
+
+.edit-btn{
+    background-color:#fe424d !important;
+    border: none !important;
+}
+
+/* Show page */
+
+.show-img{
+    height:30vh;
+}
+
+.btns{
+    display: flex;
+}
+
+.show-card{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/*map*/
+#map{
+    height:400px;
+    width:80vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15px;
+}
+
+/*test ejs*/
+
+.scroll-section{
+    display: flex !important;
+    flex-direction:row !important;
+    justify-content:space-evenly !important;
+}
+
+.main-content{
+    flex: 1;
+    height:max-content !important;
+    object-fit: contain !important;
+    width: 45%;
+    float: left !important;
+  }
+
+
+.sidebar {
+    width: 30%;
+    height: max-content !important; 
+    position: sticky !important;
+    top: 120px !important; 
+    margin-left: 20px;
+    background: white;
+    box-shadow: 0px 0px 15px #ee394bcc;
+    padding: 20px;
+    border-radius: 10px;   
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%; 
+        float: none; 
+        margin-left: 0; 
+    }
+}
+
+
+.image-layout{
+    display: flex;
+    flex-direction:row;
+}
+

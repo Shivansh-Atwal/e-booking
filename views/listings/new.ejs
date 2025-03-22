@@ -1,0 +1,85 @@
+<% layout("/layouts/boilerPlate") %>
+
+<body>
+    <div class="row mt-3">
+        <div class="col-8 offset-2" >
+
+    <h3>Create a new listing</h3>
+    <form method="POST" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
+        <div class="mb-3" >
+
+            <label for="title" class="form-label">Title</label>
+            <input name="listing[title]" type="text" placeholder="Add a Catchy Title" class="form-control" required>
+            <div class="valid-feedback">
+                Title Looks good!
+              </div>
+        </div>
+
+        <div class="mb-3">
+
+            <label for="description" class="form-label">Description</label>
+            <textarea name="listing[description]" placeholder="" class="form-control" required></textarea>
+            <div class="invalid-feedback">
+                Please enter a perfect Description !
+            </div>
+
+        </div>
+
+        
+        <div class="mb-3">
+            <label for="image" class="form-label">upload image</label>
+            <input name="listing[image]" type="file"  class="form-control" >
+        </div>
+
+    <div class="row">
+
+        <div class="mb-3 col-md-4">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" name="listing[price]" placeholder="3000000" class="form-control" required>
+            <div class="invalid-feedback">
+                Please enter a valid Price amount !
+            </div>
+        </div>
+
+        <div class="mb-3 col-md-8">
+            <label for="country" class="form-label">Country</label>
+            <input name="listing[country]" type="text" placeholder="India" class="form-control" required>
+            <div class="invalid-feedback">
+                Country name should be valid !
+              </div>
+        </div>
+    </div>
+
+        
+    <div class="row">
+        <div class="mb-3 col-md-4">
+            <label for="category" class="form-label">Category</label>
+            <select id="category" name="listing[category]" class="form-control">
+                <option value="Rooms">Rooms</option>
+                <option value="Castles">Castles</option>
+                <option value="Amazing Pools">Amazing Pools</option>
+                <option value="Iconic cities">Iconic cities</option>
+                <option value="Mountains">Mountains</option>
+                <option value="Beachfront">Beachfront</option>
+                <option value="Camper Vans">Camper Vans</option>
+                <option value="Farms">Farms</option>
+                <option value="Domes">Domes</option>
+                <option value="Boat House">Boat House</option>
+
+</select>
+        </div>
+
+        <div class="mb-3 col-md-8">
+            <label for="location" class="form-label">Location</label>
+            <input name="listing[location]" type="text" placeholder="Palampur,HP" class="form-control" required>
+              <div class="invalid-feedback">
+                Location should be valid !
+              </div>
+        </div>
+    </div>
+        <button class="btn btn-dark add-btn mt-3 mt-2">Add</button>
+        <br/><br/>
+    </form>
+    </div>
+</div>
+</body>

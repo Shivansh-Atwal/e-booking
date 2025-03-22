@@ -1,0 +1,250 @@
+<% layout("/layouts/boilerPlate") %>
+<body>
+    <div class="conatiner row ">
+        <div class="row mt-3">
+            <div class="col-10 offset-1" style="font-size: 2rem !important; ">
+                <b><%= listing.title %></b>
+        </div>    
+            <div class="card col-10 offset-1 show-card listing-card">
+
+                <div class="image-layout" >
+                    <div class="first-layout " style="width:60% !important; height: 400px !important;">
+                        <img src="<%= listing.image.url%>" 
+                                class="card-img-top show-img" 
+                                alt="listing_image" style="height:100%;"
+                                />
+                    </div>
+                    <!-- <div class="second-layout" style="width:30%; margin-left: 10px; height: 400px; display: flex; flex-direction: column;">
+                        <img src="<%= listing.image.url%>" 
+                                class="card-img-top show-img" 
+                                alt="listing_image" style="height:48%; width: 100%; margin-bottom:10px;"
+                                />
+                        <img src="<%= listing.image.url%>" 
+                                class="card-img-top show-img" 
+                                alt="listing_image" style="height:48%;"
+                                />        
+                    </div> -->
+                        
+                </div>
+
+                <!-- <%= listing.owner.username%> -->
+        
+                <div class="card-body">
+                    <p class="card-text mt-2">Owned By <i>demo</i></p>
+                    <p class="card-text" style="font-size: 1.25rem;"><%=listing.description %></p>
+                    <p class="card-text">&#8377;<%= listing.price.toLocaleString("en-IN") %> / night</p>
+                    <p class="card-text"><%=listing.location %></p>
+                    <p class="card-text"><%=listing.country %></p>
+                </div>
+            </div>
+            </div>
+
+            <div class="btns">
+                <% if(currUser && currUser._id.equals(listing.owner._id)) {%>
+                        <a href="/listings/<%=listing._id%>/edit" 
+                            class="btn btn-dark col-2 offset-1 edit-btn mb-3" >
+                            Edit</a> 
+            
+                        <form method="post" action="/listings/<%=listing._id%>?_method=DELETE">
+                            <button class="btn btn-dark offset-5 mb-3">Delete</button>
+                        </form> <% } %>
+                </div>    
+         <hr />
+        <div class="scroll-section">
+
+            <div class="main-content col-lg-6" style="max-width: 60% !important; padding:25px !important">
+               
+                <% if(currUser) { %>
+                <h4>Leave a Review</h4>
+                <form  action="/listings/<%=listing._id%>/reviews" 
+                    method="POST" novalidate class="needs-validation">
+                    
+                        
+                   
+                <div class="mb-3 mt-3">
+                    <label for="rating" class="form-label">Rating</label>
+                    <fieldset class="starability-slot">
+                        <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                        <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                        <label for="first-rate1" title="Terrible">1 star</label>
+                        <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                        <label for="first-rate2" title="Not good">2 stars</label>
+                        <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                        <label for="first-rate3" title="Average">3 stars</label>
+                        <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                        <label for="first-rate4" title="Very good">4 stars</label>
+                        <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                        <label for="first-rate5" title="Amazing">5 stars</label>
+                      </fieldset>
+                 </div>
+        
+                    <div class="mb-3 mt-3">
+                        <label for="comment" class="form-label">Comments</label>
+                        <textarea name="review[comment]"
+                        id="comment"
+                        cols="30"
+                        rows="5" 
+                        class="form-control"
+                        required
+                         ></textarea>
+                        <div class="invalid-feedback">
+                          Please enter a review!!  
+                        </div>
+                        <br/>
+                        <button class="btn btn-outline-dark">Submit</button>
+                    </div>
+                </form>
+                <hr/>
+                <% } %>
+                
+                <% if(listing.reviews.length > 0 ) { %> 
+                    <div class="row">
+                        <p><b>All Reviews</b></p>
+                    <% for(review of listing.reviews) {%>
+                        <div class="card col-5 ms-3 mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">@<i><%= review.author.username %></i></h5>
+                                <p class="starability-result card-text" data-rating=<%= review.rating%>></p>
+                                <p class="card-text"><%= review.comment%></p>
+                            <form class="mb-3" method="POST" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE">
+                                <button class="btn btn-outline-dark">Delete </button>
+                            </form>
+                        </div>
+                        </div>
+                         <%}%>
+                    </div>
+                    <%}%>
+
+                        <h3 style="text-align: center;">Where you'll be</h3>
+                        <div id="map"></div>
+
+            </div>  
+       
+            <div class="card show-card listing-card sidebar floating col-lg-4">
+                <div class="card-body">
+                    <div class="card" style="border: none !important;">
+                        <form method="get" action="/listings/<%=listing._id%>/book">
+                            <br>
+                            <h5 class="card-title mb-2">
+                                <b>&#8377;<%= listing.price.toLocaleString("en-IN") %></b>/night
+                            </h5>
+            
+                            <div class="date">
+                                <div class="form-floating date-inpt">
+                                    <input type="date" class="form-control details" name="checkin" id="floatingInput">
+                                    <label for="floatingInput">Check-in</label>
+                                </div>
+                                <div class="form-floating date-inpt">
+                                    <input type="date" class="form-control details" name="checkout" id="floatingInput">
+                                    <label for="floatingInput">Check-out</label>
+                                </div>
+                                <div class="form-floating guest-no">
+                                    <input type="number" class="form-control details" id="floatingInput">
+                                    <label for="floatingInput">Guests</label>
+                                </div>
+                            </div>
+            
+                            <div class="reserve-btn mt-3">
+                                <button class="btn btn-dark edit-btn mb-3 disabled">Reserve</button>
+                            </div>
+                        </form>
+                    </div>
+            
+                    <div class="msg">
+                        <b><p>You won't be charged yet</p></b>
+                    </div>
+            
+                    <div class="price mt-3">
+                        <!-- <div class="total-price">
+                            <div class="first-section">
+                                <a>&#8377;<%= listing.price.toLocaleString("en-IN") %> X 5 nights</a>
+                            </div>
+                            <div class="second-section">
+                                <p>&#8377;8500</p>
+                            </div>
+                        </div> -->
+            
+                        <div class="cleaning-fee">
+                            <div class="first-section"><a>Cleaning fees / Day</a></div>
+                            <div class="second-section"><p>&#8377;800</p></div>
+                        </div>
+            
+                        <div class="service-fee">
+                            <div class="first-section"><a>Service fees / Day</a></div>
+                            <div class="second-section"><p>&#8377;550</p></div>
+                        </div>
+            
+                        <hr>
+            
+                        <div class="before-tax">
+                            <div class="first-section"><b><a>Total Charges</a></b></div>
+                            <div class="second-section"><b><p>&#8377;1300 + Room charges</p></b></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+    <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+    const sidebar = document.querySelector(".sidebar");
+    const scrollSection = document.querySelector(".page");
+    const sectionTop = scrollSection.offsetTop;
+    const sectionBottom = sectionTop + scrollSection.offsetHeight - sidebar.offsetHeight;
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY >= sectionTop && window.scrollY <= sectionBottom) {
+            sidebar.style.position = "fixed !important ";
+            sidebar.style.top = "250px ";
+        } else {
+            sidebar.style.position = "static !important";
+        }
+    });
+});
+
+
+
+
+        var map = L.map('map').setView([51.505, -0.09], 13);
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            navigator.geolocation.watchPosition(success,error);
+
+            let marker,circle,zoomed;
+
+            function success(pos) {
+                const lat = pos.coords.latitude;
+                const lng = pos.coords.longitude;
+                const accuracy = pos.coords.accuracy;
+
+                if(marker){
+                    map.removeLayer(marker);
+                    map.removeLayer(circle);
+                }
+
+                 marker = L.marker([lat,lng]).addTo(map);
+                 circle = L.circle([lat,lng],{radius:accuracy}).addTo(map);
+
+                 if(!zoomed){
+                   zoomed =  map.fitBounds(circle.getBounds());
+                 }
+
+                 map.setView([lat,lng]);
+                
+            }
+
+            function error(err) {
+                if(err.code === 1){
+                    alert("Please allow your geolocation access");
+                }else{
+                    alert("Cannot get current location");
+                }
+            }
+    </script>   
+</body>
+
