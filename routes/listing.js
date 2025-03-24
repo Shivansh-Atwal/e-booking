@@ -38,7 +38,7 @@ router
       const uploadStream = cloudinary.uploader.upload_stream(
         { 
           folder: "wanderlust_DEV",
-          upload_preset: "wanderlust_unsigned"  // Add the preset name here
+          upload_preset: "wanderlust_unsigne",  // Add the preset name here
         },
         async (error, result) => {
           if (error) {
