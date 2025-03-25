@@ -11,7 +11,7 @@ main()
 })
 
 async function main() {
-   await mongoose.connect("mongodb+srv://Shivansh:S9816003623@shop.shfyv.mongodb.net/wanderlust")
+   await mongoose.connect(process.env.mongoDb);
 }
 
 const initDB = async () =>{
